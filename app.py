@@ -32,16 +32,31 @@ def get_all_data():
 # --- UI STREAMLIT ---
 st.title("🚀 Sistem Input Nilai Mahasiswa")
 
-# Sidebar untuk Login Admin
-st.sidebar.title("Area Admin")
-admin_password = st.sidebar.text_input("Password Admin", type="password")
-is_admin = admin_password == "admin123" # Ganti password di sini
+# --- LOGIC LOGIN/LOGOUT ---
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
 
-if is_admin:
-    st.sidebar.success("Login Admin Berhasil")
+# Sidebar Area
+st.sidebar.title("Area Admin")
+
+if not st.session_state['authenticated']:
+    # Form Login
+    admin_password = st.sidebar.text_input("Password Admin", type="password")
+    if st.sidebar.button("Login"):
+        if admin_password == "admin123": # Ganti password di sini
+            st.session_state['authenticated'] = True
+            st.rerun()
+        else:
+            st.sidebar.error("Password Salah")
 else:
-    if admin_password:
-        st.sidebar.error("Password Salah")
+    # Tampilan kalau sudah login
+    st.sidebar.success("Mode Admin Aktif")
+    if st.sidebar.button("Logout"):
+        st.session_state['authenticated'] = False
+        st.rerun()
+
+# Cek status login untuk akses fitur CRUD
+is_admin = st.session_state['authenticated']
 
 # --- KONTEN UTAMA ---
 tabs = st.tabs(["📝 Input Data", "📊 Lihat Nilai", "⚙️ Kelola (Admin)"])
