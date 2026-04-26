@@ -133,4 +133,4 @@ with tabs[2]:
         st.warning("Gunakan sidebar untuk login sebagai Admin agar bisa mengelola data.")
 
 # Footer
-st.caption("Dibuat untuk tugas kuliah Mikha • Informatika 2026")
+st.caption("Informatika")
