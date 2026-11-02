@@ -38,13 +38,13 @@ def tentukan_grade(nilai):
 
 # --- UI STREAMLIT ---
 st.set_page_config(page_title="Input Nilai Informatika", layout="centered")
-st.title("🚀 Sistem Input Nilai Mahasiswa")
+st.title("Sistem Input Nilai Mahasiswa")
 
 # --- LOGIC LOGIN/LOGOUT ---
 if 'authenticated' not in st.session_state:
     st.session_state['authenticated'] = False
 
-st.sidebar.title("🔐 Area Admin")
+st.sidebar.title("Area Admin")
 
 if not st.session_state['authenticated']:
     # Form Login
@@ -65,7 +65,7 @@ else:
 is_admin = st.session_state['authenticated']
 
 # --- KONTEN UTAMA ---
-tabs = st.tabs(["📝 Input Data", "📊 Lihat Nilai", "⚙️ Kelola (Admin)"])
+tabs = st.tabs(["Input Data", "Lihat Nilai", "Kelola (Admin)"])
 
 # TAB 1: INPUT DATA
 with tabs[0]:
